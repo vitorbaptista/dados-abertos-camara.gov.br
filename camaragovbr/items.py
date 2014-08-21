@@ -8,7 +8,10 @@
 import scrapy
 
 
-class ScrapyCamaragovbrItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+class ProposicaoItem(scrapy.Item):
+    codigo = scrapy.Field()
+    nome = scrapy.Field()
+    data_votacao = scrapy.Field()
+    tipo = scrapy.Field()
+    numero = scrapy.Field()
+    ano = scrapy.Field()
