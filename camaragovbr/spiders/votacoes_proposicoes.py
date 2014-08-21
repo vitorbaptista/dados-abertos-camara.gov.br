@@ -35,6 +35,8 @@ class VotacoesProposicoesSpider(spiders.XMLFeedSpider):
 
     def _parse_votacoes(self, votacoes):
         result = []
+        if hasattr(votacoes, 'keys'):
+            votacoes = [votacoes]
         for votacao in votacoes:
             aux = {
                 'resumo': votacao['@Resumo'],
@@ -42,9 +44,13 @@ class VotacoesProposicoesSpider(spiders.XMLFeedSpider):
                 'hora': votacao['@Hora'],
                 'obj_votacao': votacao['@ObjVotacao'],
                 'cod_sessao': int(votacao['@codSessao']),
-                'orientacao_bancada': self._parse_orientacao_bancada(votacao['orientacaoBancada']['bancada']),
-                'votos': self._parse_votos(votacao['votos']['Deputado'])
             }
+            orientacaoBancada = votacao.get('orientacaoBancada')
+            if orientacaoBancada:
+                aux['orientacao_bancada'] = self._parse_orientacao_bancada(orientacaoBancada['bancada'])
+            votos = votacao.get('votos')
+            if votos:
+                aux['votos'] = self._parse_votos(votos['Deputado'])
             result.append(aux)
         return result
 
