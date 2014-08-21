@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import csv
 import scrapy.contrib.spiders as spiders
 import xmltodict
 import camaragovbr.items
@@ -9,14 +10,17 @@ class VotacoesProposicoesSpider(spiders.XMLFeedSpider):
     allowed_domains = ['http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterVotacaoProposicao']
     iterator = 'xml'
     itertag = './proposicao'
+    PROPOSICOES_VOTADAS_FILE_PATH = 'data/proposicoes_votadas.csv'
 
-    def __init__(self, *args, **kwargs):
-        super(VotacoesProposicoesSpider, self).__init__(*args, **kwargs)
-        self.start_urls = self._generate_start_urls()
+    def start_requests(self):
+        url = "http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterVotacaoProposicao?tipo={0}&numero={1}&ano={2}"
 
-    def _generate_start_urls(self):
-        return ["http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterVotacaoProposicao?tipo=PL&numero=1992&ano=2007",
-            "http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterVotacaoProposicao?tipo=PLP&numero=349&ano=2002"]
+        with open(self.PROPOSICOES_VOTADAS_FILE_PATH, 'rb') as f:
+            reader = csv.DictReader(f)
+            urls = {url.format(v['tipo'], v['numero'], v['ano'])
+                    for v in reader}
+
+        return [self.make_requests_from_url(u) for u in urls]
 
     def parse_node(self, response, node):
         votacao = camaragovbr.items.VotacaoProposicaoItem()

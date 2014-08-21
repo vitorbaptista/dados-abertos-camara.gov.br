@@ -18,3 +18,4 @@ NEWSPIDER_MODULE = 'camaragovbr.spiders'
 ITEM_PIPELINES = {
     'camaragovbr.pipelines.RemoveDuplicateProposicoesPipeline': 300
 }
+HTTPCACHE_ENABLED = True
