@@ -1,9 +1,14 @@
 DATA_DIR=./data
 
-all: proposicoes_votadas.csv
+.PHONY: clean
 
-proposicoes_votadas.csv: create_data_dir
-	$(eval OUTFILE := $(DATA_DIR)/$@)
+all: data/proposicoes_votadas.csv
+
+clean:
+	rm -rf $(DATA_DIR)
+
+$(DATA_DIR)/proposicoes_votadas.csv: $(DATA_DIR)
+	$(eval OUTFILE := $@)
 	scrapy crawl proposicoes_votadas_em_plenario -o $(OUTFILE)
 	# Sort the file
 	$(eval TMPFILE := $(shell mktemp -u))
@@ -11,6 +16,7 @@ proposicoes_votadas.csv: create_data_dir
 	sed -i -e "1d" $(OUTFILE)
 	sort $(OUTFILE) >> $(TMPFILE)
 	mv $(TMPFILE) $(OUTFILE)
+	touch $(OUTFILE)
 
-create_data_dir:
+$(DATA_DIR):
 	mkdir -p $(DATA_DIR)
