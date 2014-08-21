@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import scrapy.contrib.spiders as spiders
-import scrapy
 import datetime
 import camaragovbr.items
 
@@ -38,5 +37,5 @@ class ProposicoesVotadasEmPlenarioSpider(spiders.XMLFeedSpider):
         current_year = datetime.date.today().year
         start_urls = [url.replace('{YEAR}', str(year))
                       for year in xrange(start_year, current_year + 1)]
-    
+
         return start_urls
