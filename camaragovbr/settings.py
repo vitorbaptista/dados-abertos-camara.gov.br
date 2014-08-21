@@ -15,3 +15,6 @@ NEWSPIDER_MODULE = 'camaragovbr.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'camaragovbr (+http://www.yourdomain.com)'
+ITEM_PIPELINES = {
+    'camaragovbr.pipelines.RemoveDuplicateProposicoesPipeline': 300
+}
