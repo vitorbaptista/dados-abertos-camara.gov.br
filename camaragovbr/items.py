@@ -15,3 +15,10 @@ class ProposicaoItem(scrapy.Item):
     tipo = scrapy.Field()
     numero = scrapy.Field()
     ano = scrapy.Field()
+
+
+class VotacaoProposicaoItem(scrapy.Item):
+    sigla = scrapy.Field()
+    numero = scrapy.Field()
+    ano = scrapy.Field()
+    votacoes = scrapy.Field()
