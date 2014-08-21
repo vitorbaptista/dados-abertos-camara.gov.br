@@ -13,9 +13,13 @@ BOT_NAME = 'camaragovbr'
 SPIDER_MODULES = ['camaragovbr.spiders']
 NEWSPIDER_MODULE = 'camaragovbr.spiders'
 
-# Crawl responsibly by identifying yourself (and your website) on the user-agent
+# Crawl responsibly by identifying yourself and your website on the user-agent
 #USER_AGENT = 'camaragovbr (+http://www.yourdomain.com)'
 ITEM_PIPELINES = {
     'camaragovbr.pipelines.RemoveDuplicateProposicoesPipeline': 300
 }
 HTTPCACHE_ENABLED = True
+
+FEED_EXPORTERS = {
+    'json': 'camaragovbr.exporters.SortedPrettyPrintedJsonItemExporter'
+}

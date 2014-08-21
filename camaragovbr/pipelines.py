@@ -16,7 +16,8 @@ class RemoveDuplicateProposicoesPipeline(object):
         if isinstance(item, camaragovbr.items.ProposicaoItem):
             itemHash = str(item['codigo']) + str(item['data_votacao'])
             if itemHash in self.hashes_proposicoes:
-                raise DropItem('Proposição duplicada encontrada: %s' % item)
+                raise DropItem('Proposicao duplicada codigo %s e data %s' %
+                               (item['codigo'], item['data_votacao']))
             else:
                 self.hashes_proposicoes.add(itemHash)
         return item

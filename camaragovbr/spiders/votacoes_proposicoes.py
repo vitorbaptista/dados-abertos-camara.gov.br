@@ -20,7 +20,7 @@ class VotacoesProposicoesSpider(spiders.XMLFeedSpider):
             urls = {url.format(v['tipo'], v['numero'], v['ano'])
                     for v in reader}
 
-        return [self.make_requests_from_url(u) for u in urls]
+        return (self.make_requests_from_url(u) for u in urls)
 
     def parse_node(self, response, node):
         votacao = camaragovbr.items.VotacaoProposicaoItem()
