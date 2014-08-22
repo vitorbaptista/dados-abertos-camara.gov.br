@@ -9,6 +9,7 @@ clean:
 
 $(DATA_DIR)/proposicoes_votadas.csv: $(DATA_DIR)
 	$(eval OUTFILE := $@)
+	rm -f $(OUTFILE) # scrapy doesn't support incrementally updating files
 	scrapy crawl proposicoes_votadas_em_plenario -L INFO -o $(OUTFILE)
 	# Sort the file
 	$(eval TMPFILE := $(shell mktemp -u))
@@ -20,6 +21,7 @@ $(DATA_DIR)/proposicoes_votadas.csv: $(DATA_DIR)
 
 $(DATA_DIR)/votacoes_proposicoes.json: $(DATA_DIR) $(DATA_DIR)/proposicoes_votadas.csv
 	$(eval OUTFILE := $@)
+	rm -f $(OUTFILE) # scrapy doesn't support incrementally updating files
 	scrapy crawl votacoes_proposicoes -L INFO -o $(OUTFILE)
 
 $(DATA_DIR):
