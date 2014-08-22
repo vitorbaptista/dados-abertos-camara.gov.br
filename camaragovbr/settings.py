@@ -21,5 +21,5 @@ ITEM_PIPELINES = {
 HTTPCACHE_ENABLED = True
 
 FEED_EXPORTERS = {
-    'json': 'camaragovbr.exporters.SortedPrettyPrintedJsonItemExporter'
+    'json': 'camaragovbr.exporters.SortedJsonItemExporter'
 }
