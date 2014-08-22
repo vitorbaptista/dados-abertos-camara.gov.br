@@ -1,0 +1,2 @@
+Scrapy>=0.24.4
+xmltodict>=0.9.0
