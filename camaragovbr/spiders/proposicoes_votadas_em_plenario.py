@@ -15,7 +15,7 @@ class ProposicoesVotadasEmPlenarioSpider(spiders.XMLFeedSpider):
         self.start_urls = self._generate_start_urls(start_year)
 
     def parse_node(self, response, node):
-        proposicao = camaragovbr.items.ProposicaoItem()
+        proposicao = camaragovbr.items.ProposicaoVotadaItem()
 
         codigo = int(node.xpath('./codProposicao/text()').extract()[0])
         nome = node.xpath('./nomeProposicao/text()').extract()[0].strip()

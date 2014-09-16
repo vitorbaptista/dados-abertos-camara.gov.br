@@ -8,7 +8,7 @@
 import scrapy
 
 
-class ProposicaoItem(scrapy.Item):
+class ProposicaoVotadaItem(scrapy.Item):
     codigo = scrapy.Field()
     nome = scrapy.Field()
     data_votacao = scrapy.Field()
