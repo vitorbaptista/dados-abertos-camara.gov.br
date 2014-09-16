@@ -17,6 +17,29 @@ class ProposicaoVotadaItem(scrapy.Item):
     ano = scrapy.Field()
 
 
+class ProposicaoItem(scrapy.Item):
+    tipo = scrapy.Field()
+    numero = scrapy.Field()
+    ano = scrapy.Field()
+    id = scrapy.Field()
+    id_proposicao_principal = scrapy.Field()
+    nome = scrapy.Field()
+    nome_proposicao_origem = scrapy.Field()
+    tipo = scrapy.Field()
+    tema = scrapy.Field()
+    ementa = scrapy.Field()
+    explicacao_ementa = scrapy.Field()
+    autor = scrapy.Field()
+    data_apresentacao = scrapy.Field()
+    regime_tramitacao = scrapy.Field()
+    ultimo_despacho = scrapy.Field()
+    ultimo_despacho_data = scrapy.Field()
+    apreciacao = scrapy.Field()
+    indexacao = scrapy.Field()
+    situacao = scrapy.Field()
+    link_inteiro_teor = scrapy.Field()
+
+
 class VotacaoProposicaoItem(scrapy.Item):
     sigla = scrapy.Field()
     numero = scrapy.Field()

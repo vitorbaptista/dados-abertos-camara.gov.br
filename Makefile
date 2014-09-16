@@ -24,5 +24,8 @@ $(DATA_DIR)/votacoes_proposicoes.json: $(DATA_DIR) $(DATA_DIR)/proposicoes_votad
 	rm -f $(OUTFILE) # scrapy doesn't support incrementally updating files
 	scrapy crawl votacoes_proposicoes -L INFO -o $(OUTFILE)
 
-$(DATA_DIR):
+$(DATA_DIR)/proposicoes.csv: $(DATA_DIR)/proposicoes_votadas.csv
 	mkdir -p $(DATA_DIR)
+	$(eval OUTFILE := $@)
+	rm -f $(OUTFILE) # scrapy doesn't support incrementally updating files
+	scrapy crawl proposicoes -L INFO -o $(OUTFILE)
