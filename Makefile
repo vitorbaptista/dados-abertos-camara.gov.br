@@ -2,7 +2,7 @@ DATA_DIR=./data
 
 .PHONY: clean
 
-all: $(DATA_DIR)/proposicoes_votadas.csv $(DATA_DIR)/votacoes_proposicoes.json
+all: $(DATA_DIR)/proposicoes_votadas.csv $(DATA_DIR)/votacoes_proposicoes.json $(DATA_DIR)/proposicoes.csv
 
 clean:
 	rm -rf $(DATA_DIR)
