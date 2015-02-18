@@ -20,11 +20,12 @@ class ProposicoesVotadasEmPlenarioSpider(spiders.XMLFeedSpider):
         codigo = int(node.xpath('./codProposicao/text()').extract()[0])
         nome = node.xpath('./nomeProposicao/text()').extract()[0].strip()
         dataVotacao = node.xpath('./dataVotacao/text()').extract()[0].strip()
+        dataVotacao = datetime.datetime.strptime(dataVotacao, '%d/%m/%Y')
         tipo = nome.split(' ')[0]
         numero, ano = nome.split(' ')[1].split('/')
         proposicao['codigo'] = codigo
         proposicao['nome'] = nome
-        proposicao['data_votacao'] = dataVotacao
+        proposicao['data_votacao'] = dataVotacao.strftime('%Y-%m-%d')
         proposicao['tipo'] = tipo
         proposicao['numero'] = numero
         proposicao['ano'] = ano
