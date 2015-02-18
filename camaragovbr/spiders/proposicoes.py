@@ -18,7 +18,7 @@ class ProposicoesSpider(spiders.XMLFeedSpider):
 
         with open(self.PROPOSICOES_VOTADAS_FILE_PATH, 'rb') as f:
             reader = csv.DictReader(f)
-            urls = {url.format(v['codigo'])
+            urls = {url.format(v['id'])
                     for v in reader}
 
         return (self.make_requests_from_url(u) for u in urls)

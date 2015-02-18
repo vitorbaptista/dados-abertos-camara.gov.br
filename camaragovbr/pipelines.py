@@ -14,10 +14,10 @@ class RemoveDuplicateProposicoesPipeline(object):
 
     def process_item(self, item, spider):
         if isinstance(item, camaragovbr.items.ProposicaoVotadaItem):
-            itemHash = str(item['codigo']) + str(item['data_votacao'])
+            itemHash = str(item['id']) + str(item['data_votacao'])
             if itemHash in self.hashes_proposicoes:
-                raise DropItem('Proposicao duplicada codigo %s e data %s' %
-                               (item['codigo'], item['data_votacao']))
+                raise DropItem('Proposicao duplicada id %s e data %s' %
+                               (item['id'], item['data_votacao']))
             else:
                 self.hashes_proposicoes.add(itemHash)
         return item

@@ -17,13 +17,13 @@ class ProposicoesVotadasEmPlenarioSpider(spiders.XMLFeedSpider):
     def parse_node(self, response, node):
         proposicao = camaragovbr.items.ProposicaoVotadaItem()
 
-        codigo = int(node.xpath('./codProposicao/text()').extract()[0])
+        id = int(node.xpath('./codProposicao/text()').extract()[0])
         nome = node.xpath('./nomeProposicao/text()').extract()[0].strip()
         dataVotacao = node.xpath('./dataVotacao/text()').extract()[0].strip()
         dataVotacao = datetime.datetime.strptime(dataVotacao, '%d/%m/%Y')
         tipo = nome.split(' ')[0]
         numero, ano = nome.split(' ')[1].split('/')
-        proposicao['codigo'] = codigo
+        proposicao['id'] = id
         proposicao['nome'] = nome
         proposicao['data_votacao'] = dataVotacao.strftime('%Y-%m-%d')
         proposicao['tipo'] = tipo

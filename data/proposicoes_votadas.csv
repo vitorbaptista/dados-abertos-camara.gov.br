@@ -1,4 +1,4 @@
-codigo,data_votacao,tipo,nome,ano,numero
+id,data_votacao,tipo,nome,ano,numero
 168842,1991-05-22,PDC,PDC 369/1990,1990,369
 168845,1991-05-22,PDC,PDC 370/1990,1990,370
 168854,1991-05-22,PDC,PDC 374/1990,1990,374
