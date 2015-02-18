@@ -16,7 +16,7 @@ $(DATA_DIR)/proposicoes_votadas.csv:
 	$(eval TMPFILE := $(shell mktemp -u))
 	head -1 $(OUTFILE) > $(TMPFILE)
 	sed -i -e "1d" $(OUTFILE)
-	sort $(OUTFILE) >> $(TMPFILE)
+	sort -t, -k2 $(OUTFILE) >> $(TMPFILE)
 	mv $(TMPFILE) $(OUTFILE)
 	touch $(OUTFILE)
 
