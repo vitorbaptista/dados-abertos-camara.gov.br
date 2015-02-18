@@ -37,7 +37,7 @@ class ProposicoesSpider(spiders.XMLFeedSpider):
         if xml.get('idProposicaoPrincipal'):
             proposicao['id_proposicao_principal'] = int(xml['idProposicaoPrincipal'])
         proposicao['nome'] = xml['nomeProposicao']
-        proposicao['nome_proposicao_origem'] = xml['nomeProposicao']
+        proposicao['nome_proposicao_origem'] = xml['nomeProposicaoOrigem']
         proposicao['tipo'] = xml['tipoProposicao']
         proposicao['tema'] = xml['tema']
         proposicao['ementa'] = xml['Ementa']
