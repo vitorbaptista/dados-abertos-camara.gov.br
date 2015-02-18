@@ -43,6 +43,10 @@ class ProposicoesSpider(spiders.XMLFeedSpider):
         proposicao['ementa'] = xml['Ementa']
         proposicao['explicacao_ementa'] = xml['ExplicacaoEmenta']
         proposicao['autor'] = xml['Autor']
+        if xml.get('ideCadastro'):
+            proposicao['autor_id'] = int(xml['ideCadastro'])
+        proposicao['autor_uf'] = xml.get('ufAutor')
+        proposicao['autor_partido'] = xml.get('partidoAutor')
         proposicao['data_apresentacao'] = self._parse_date(xml['DataApresentacao'])
         proposicao['regime_tramitacao'] = xml['RegimeTramitacao']
         proposicao['ultimo_despacho'] = xml['UltimoDespacho'].get('#text')
